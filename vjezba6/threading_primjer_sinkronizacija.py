@@ -17,10 +17,10 @@ class myThread(threading.Thread):
 	
 	def run(self):
 		print "Pokrecem nit " + self.name
-		# Ostvari lock zbog sinkronizacije niti 
+		
 		threadLock.acquire()
 		print_time(self.name,self.counter,3)
-		# Oslobodi lock da bi se izvrsila sljedeca nit
+		
 		threadLock.release()
 
 def print_time(threadName,counter,delay):
@@ -32,18 +32,16 @@ def print_time(threadName,counter,delay):
 threadLock =threading.Lock()
 threads =[]
 
-# Kreiraj nove niti
 thread1 =myThread(1,"Thread-1",1)
 thread2 =myThread(2,"Thread-2",2)
 
-# Pokreni nove niti
+
 thread1.start()
 thread2.start()
 
-# Dodaj niti u thread listu sa svim nitima
 threads.append(thread1)
 threads.append(thread2)
-# Cekaj dok se sve niti ne izvrse
+
 for t in threads:
 	t.join()
 print"\nIzlazim iz glavne niti\n"

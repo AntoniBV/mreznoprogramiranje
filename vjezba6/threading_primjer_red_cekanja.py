@@ -1,6 +1,3 @@
-#threading_primjer_red_cekanja.py
-#Mrezno programiranje LABno6 2019
-
 import Queue
 import threading
 import time
@@ -43,27 +40,26 @@ workQueue=Queue.Queue(10)
 threads=[]
 threadID=1
 
-# Kreiraj nove niti 
 for tName in threadList:
 	thread=myThread(threadID,tName,workQueue)
 	thread.start()
 	threads.append(thread)
 	threadID+=1
 	
-# Napuni red cekanja 
+
 queueLock.acquire()
 for word in nameList:
 	workQueue.put(word)
 queueLock.release()
 		
-# Cekaj da se red cekanja isprazni
+
 while not workQueue.empty():
 	pass
 		
-# Obavijesti niti da je vrijeme za izlazak
+
 exitFlag=1
 	
-# Cekaj dok se sve niti ne izvrse
+
 for t in threads:
 	t.join()
 print"\nIzlazim iz glavne niti\n"
