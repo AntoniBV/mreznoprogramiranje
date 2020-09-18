@@ -1,0 +1,2 @@
+1. Broj porta
+2. Linija spaja klijenta na računalo i port 9999
